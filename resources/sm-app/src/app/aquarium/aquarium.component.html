@@ -1,0 +1,43 @@
+<button (click)="refresh()">Refresh</button>
+
+<div class="column-3-container">
+  <div>
+    <div class="device-container panel">
+      <div class="socket">
+        <input type="checkbox" class="checkbox" [(ngModel)]="aquarium.socket0" (change)="onChangeSocket($event,0)"
+               id="aquariumSocket0">
+        <label for="aquariumSocket0">Розетка 1</label>
+      </div>
+
+      <div class="socket">
+        <input type="checkbox" class="checkbox" [(ngModel)]="aquarium.socket1" (change)="onChangeSocket($event,1)"
+               id="aquariumSocket1">
+        <label for="aquariumSocket1">Розетка 2</label>
+      </div>
+
+      <div class="socket">
+        <input type="checkbox" class="checkbox" [(ngModel)]="aquarium.socket2" (change)="onChangeSocket($event,2)"
+               id="aquariumSocket2">
+        <label for="aquariumSocket2">Розетка 3</label>
+      </div>
+
+      <div class="socket">
+        <input type="checkbox" class="checkbox" [(ngModel)]="aquarium.socket3" (change)="onChangeSocket($event,3)"
+               id="aquariumSocket3">
+        <label for="aquariumSocket3">Розетка 4</label>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sensors-container panel">
+      <div>Датчик света: {{aquarium.lightSensor}}</div>
+      <div>Датчик звука: {{aquarium.micSensor}}</div>
+      <div>Датчик вибрации: {{aquarium.vibroSensor}}</div>
+
+      <div>Температура: {{aquarium.temperatureSensor}} C</div>
+      <div>Влажность: {{aquarium.humiditySensor}} %</div>
+
+    </div>
+  </div>
+  <div></div>
+</div>

@@ -1,0 +1,13 @@
+<div class="main-menu">
+  <a [routerLinkActive]="['active']" routerLink='/aquarium'>Аквариум</a>
+  <a [routerLinkActive]="['active']" routerLink='/bedroom'>Спальня</a>
+  <a [routerLinkActive]="['active']" routerLink='/corridor'>Коридор</a>
+</div>
+
+<hr/>
+<div style="padding: 10px;">
+  <router-outlet></router-outlet>
+  <!-- Routed views go here -->
+</div>
+
+
