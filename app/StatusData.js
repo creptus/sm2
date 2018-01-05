@@ -1,8 +1,15 @@
 /**
  * Created by akorolev on 03.10.2017.
  */
-
+/**
+ *
+ * @type {StatusData}
+ */
 module.exports = class StatusData {
+    /**
+     *
+     * @param {string} data
+     */
     constructor(data = '') {
         this.controller = {
             name: '',
@@ -19,7 +26,7 @@ module.exports = class StatusData {
         this._availableNames = {
             sensors: ['light', 'vibro', 'mic', 'humidity', 'temperature'],
             devices: ['socket', 'sockets']
-        }
+        };
 
         if (data != '') {
             this.parse(data);
@@ -28,7 +35,7 @@ module.exports = class StatusData {
 
     /**
      *
-     * @param name
+     * @param {string} name
      * @return {boolean}
      * @private
      */
@@ -44,7 +51,7 @@ module.exports = class StatusData {
 
     /**
      *
-     * @param name
+     * @param {string} name
      * @return {boolean}
      * @private
      */
@@ -82,24 +89,22 @@ module.exports = class StatusData {
                         this.controller.name = _parts.join(' ');
                     }
                 }
-
             }
-
         }
     }
 
     /**
      *
-     * @param data
+     * @param {string} data
      * @private
      */
     _parseSensor(data = '') {
-        let parts = data.split(':'),
-            res = {
-                name: parts.shift(),
-                value: ''
-            },
-            numbersRegex = /^[0-9.]+$/;
+        let parts = data.split(':');
+        let res = {
+            name: parts.shift(),
+            value: ''
+        };
+        let numbersRegex = /^[0-9.]+$/;
         if (parts.length > 0) {
             parts = parts.join(':').split(';');
         }
@@ -113,18 +118,22 @@ module.exports = class StatusData {
             }
         }
         this.sensors.push(res);
-
-        //console.log(data);
+        // console.log(data);
     }
 
+    /**
+     *
+     * @param {string} data
+     * @private
+     */
     _parseDevice(data) {
-        let parts = data.split(':'),
-            baseName=parts.shift(),
-            res = {
-                name: '',
-                value: ''
+        let parts = data.split(':');
+        let baseName = parts.shift();
+        let res = {
+            name: '',
+            value: ''
 
-            }  ;
+        };
 
         if (parts.length > 0) {
             parts = parts.join(':').split(';');
@@ -135,7 +144,7 @@ module.exports = class StatusData {
             v = v.split(' ');
             _v = {
                 key: '',
-                value: '',
+                value: ''
             };
             if (v.length > 0) {
                 _v.key = v.shift();
@@ -157,16 +166,19 @@ module.exports = class StatusData {
                 value: ''
 
             };
-            res.name=`${baseName}_${_v.key}`;
-            res.value=_v.value;
+            res.name = `${baseName}_${_v.key}`;
+            res.value = _v.value;
             this.devices.push(res);
         }
-
     }
 
-    parse(data = '') {       
-        let parts = data.split('|'),
-            _parts;   
+    /**
+     *
+     * @param {string} data
+     */
+    parse(data = '') {
+        let parts = data.split('|');
+        let _parts;
         for (let p of parts) {
             p = p.trim();
             if (p.substring(0, 1) == '!') {
@@ -175,9 +187,9 @@ module.exports = class StatusData {
                 continue;
             }
 
-            //<device/sensor name>:
+            // <device/sensor name>:
             _parts = p.split(':');
-            //console.log(_parts);
+            // console.log(_parts);
             if (_parts.length > 1) {
                 if (this._isSensor(_parts[0])) {
                     this._parseSensor(p);
@@ -187,15 +199,19 @@ module.exports = class StatusData {
                     this._parseDevice(p);
                 }
             }
-
         }
     }
 
+    /**
+     *
+     * @return {{controller: ({name: string, info: string, ip: string, port: string}|*), sensors: Array, 
+     * devices: Array}}
+     */
     getData() {
         return {
             controller: this.controller,
             sensors: this.sensors,
             devices: this.devices
-        }
+        };
     }
-}
+};

@@ -5,29 +5,28 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 const dgram = require('dgram');
-
 const server = dgram.createSocket('udp4');
 const StatusData = require('./app/StatusData');
 const Sender = require('./app/Sender');
-
 const Bot = require('./app/Bot');
-
-const config=require('./config');
-
-const fs = require('fs');
+const config = require('./config');
 const util = require('util');
-
-
 const Aquarium = require('./app/models/Aquarium');
 
 
-const sender = new Sender(); //message sender queue
-let aquarium = new Aquarium();//stat of aquarium
+const sender = new Sender(); // message sender queue
+let aquarium = new Aquarium();// stat of aquarium
 
 const app = express();
 app.use(bodyParser.json());
+
+process.on('unhandledRejection', (reason, p) => {
+    console.error(p, reason);
+});
+process.on('rejectionHandled', (p) => {
+    console.error(p);
+});
 
 
 app.use('/js', express.static('resources/js'));
@@ -39,24 +38,24 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/resources/sm-app/dist/index.html'));
 });
 
-app.post('/api/aquarium/status', (req, res) => {//last static from controller aquarium
-    //let str2 = `!:aqwa|light: on;|vibro1: off;|mic: 1005;|humidity: 24.60;|temperature: 25.20;|sokets:0 true;1 false;2 false;3 false;|`;
-    //let sd = new StatusData(str2);
-    //console.log(sd.getData());
-    //aquarium.setData(sd.getData());
+app.post('/api/aquarium/status', (req, res) => {// last static from controller aquarium
+    // let str2 = `!:aqwa|light: on;|vibro1: off;|mic: 1005;|humidity: 24.60;|
+    // temperature: 25.20;|sokets:0 true;1 false;2 false;3 false;|`;
+    // let sd = new StatusData(str2);
+    // console.log(sd.getData());
+    // aquarium.setData(sd.getData());
 
-    let message = `status` + "\r\n";
+    let message = `status\r\n`;
     sender.addMessage(message, 41100, '192.168.1.188');
     setTimeout(() => {
         res.json(aquarium);
     }, 4000);
-
 });
 
-app.post('/api/aquarium/socket/switch', (req, res) => {//on/off socket in controller aquarium
+app.post('/api/aquarium/socket/switch', (req, res) => {// on/off socket in controller aquarium
     let params = req.body;
     aquarium[`socket${params.socketNumber}`] = params.state;
-    let message = `socket_${params.socketNumber}_${params.state ? 'On' : 'Off'}` + "\r\n";
+    let message = `socket_${params.socketNumber}_${params.state ? 'On' : 'Off'}` + `\r\n`;
 
     sender.addMessage(message, 41100, '192.168.1.188');
     res.json({});
@@ -66,8 +65,7 @@ app.post('/api/aquarium/socket/switch', (req, res) => {//on/off socket in contro
 app.listen(3000);
 console.log('web listen: http://localhost:3000/');
 
-
-let senderIntervalId = setInterval(() => {
+setInterval(() => {
     sender.sendMessage();
 }, 1000);
 
@@ -96,7 +94,7 @@ server.bind(41234, function () {
 
 require('dns').lookup(require('os').hostname(), function (err, add, fam) {
     console.log('addr: ' + add);
-})
+});
 
 
 const bot = new Bot(config.telegram.bot.electricHomeBot.token);
@@ -114,9 +112,13 @@ const b = async() => {
         return;
     }
     let u = null;
-    //util.log(data.result.length);
+    // util.log(data.result.length);
+    // console.log(config.telegram.me);
     for (let update of data.result) {
-        //console.log(update);
+        // console.log(update);
+        if (update.message.from.id !== config.telegram.me.id) {
+            continue;
+        }
         u = update;
     }
 

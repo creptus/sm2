@@ -2,6 +2,9 @@
  * Created by akorolev on 07.12.2017.
  */
 module.exports = class Aquarium {
+    /**
+     *
+     */
     constructor() {
         this.socket0 = false;
         this.socket1 = false;
@@ -16,6 +19,11 @@ module.exports = class Aquarium {
         this.humiditySensor = 0;
     }
 
+    /**
+     *
+     * @param {Object} data
+     * @return {boolean}
+     */
     setData(data) {
         if (data.controller.name !== 'aqwa') {
             return false;
@@ -23,7 +31,7 @@ module.exports = class Aquarium {
         console.log(data);
         for (let s of data.sensors) {
             switch (s.name) {
-                case'light':
+                case 'light':
                     this.lightSensor = s.value === 'on';
                     break;
                 case 'vibro1':
@@ -50,8 +58,8 @@ module.exports = class Aquarium {
                 case 'sokets_1':
                 case 'sokets_2':
                 case 'sokets_3':
-                    n = d.name.replace(/[^\d]/igm, '')
-                    if (typeof this[`socket${n}`] != "undefined") {
+                    n = d.name.replace(/[^\d]/igm, '');
+                    if (typeof this[`socket${n}`] !== 'undefined') {
                         this[`socket${n}`] = d.value;
                     }
                     break;
@@ -62,5 +70,4 @@ module.exports = class Aquarium {
         }
         console.log(this);
     }
-
-}
+};
