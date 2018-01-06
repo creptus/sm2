@@ -17,6 +17,9 @@ import {AquariumComponent} from './aquarium/aquarium.component';
 import {AquariumService} from './services/services';
 import {BedroomComponent} from './bedroom/bedroom.component';
 import {CorridorComponent} from './corridor/corridor.component';
+import {LampDirective} from './directive/lamp.directive';
+import {FlashDirective} from './directive/flash.directive';
+
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -36,6 +39,7 @@ const appRoutes: Routes = [
     AquariumComponent,
     BedroomComponent,
     CorridorComponent,
+    LampDirective, FlashDirective,
     NotFoundComponent
 
 

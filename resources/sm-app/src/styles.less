@@ -1,6 +1,7 @@
 body {
   margin: 0;
   //background: #E5E5E5;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -115,14 +116,28 @@ body {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
 }
 
+.h20 {
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+}
+
 @media only screen and (max-width: 500px) {
   .column-3-container {
     flex-direction: column;
     > div {
       margin-top: 10px;
       width: 100%;
+      vertical-align: middle;
     }
   }
 }
+
+
+
+@import "buttons.less";
 
 

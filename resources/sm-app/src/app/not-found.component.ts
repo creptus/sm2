@@ -4,7 +4,7 @@
 import { Component} from '@angular/core';
 
 @Component({
-  selector: 'not-found-app',
+  selector: 'app-not-found-app',
   template: `<h3>Извинете, компонент не найден</h3>`
 })
 export class NotFoundComponent { }

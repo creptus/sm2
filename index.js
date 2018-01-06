@@ -31,6 +31,7 @@ process.on('rejectionHandled', (p) => {
 
 app.use('/js', express.static('resources/js'));
 app.use('/css', express.static('resources/css'));
+app.use('/svg', express.static('resources/svg'));
 
 app.use('/sm-app', express.static('resources/sm-app/dist'));
 

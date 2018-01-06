@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Aquarium} from  '../models/models';
+import {Aquarium} from '../models/models';
 import {AquariumService} from '../services/services';
 import {Subscription} from 'rxjs/Subscription';
+import {LampDirective} from '../directive/lamp.directive';
 
 @Component({
   selector: 'app-aquarium',
@@ -21,7 +22,7 @@ export class AquariumComponent implements OnInit {
   }
 
   onChangeSocket(event: any, socketNumber: number): void {
-    //console.log(event.target.checked, socketNumber)
+    // console.log(event.target.checked, socketNumber)
     this.aquariumService.switchSocket(socketNumber, event.target.checked)
       .then(data => {
         setTimeout(this.refresh.bind(this), 3000);
@@ -37,7 +38,7 @@ export class AquariumComponent implements OnInit {
         this.aquarium = aq;
       }).catch(err => {
 
-    })
+    });
   }
 
 }
