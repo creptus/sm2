@@ -1,16 +1,12 @@
 /**
- * Created by akorolev on 07.12.2017.
+ * Created by creptus on 07.01.2018.
  */
-module.exports = class Aquarium {
+
+module.exports=class Bedroom {
     /**
-     *
+     * 
      */
     constructor() {
-        this.socket0 = false;
-        this.socket1 = false;
-        this.socket2 = false;
-        this.socket3 = false;
-
         this.lightSensor = false;
         this.vibroSensor = false;
         this.micSensor = 0;
@@ -25,7 +21,7 @@ module.exports = class Aquarium {
      * @return {boolean}
      */
     setData(data) {
-        if (data.controller.name !== 'aqwa') {
+        if (data.controller.name !== 'bedroom') {
             return false;
         }
         // console.log(data);
@@ -50,20 +46,9 @@ module.exports = class Aquarium {
                     console.log('Unknown', s);
             }
         }
-
-        let n = 0;
+        
         for (let d of data.devices) {
             switch (d.name) {
-                case 'sokets_0':
-                case 'sokets_1':
-                case 'sokets_2':
-                case 'sokets_3':
-                    n = d.name.replace(/[^\d]/igm, '');
-                    if (typeof this[`socket${n}`] !== 'undefined') {
-                        this[`socket${n}`] = d.value;
-                    }
-                    break;
-
                 default:
                     console.log('Unknown', d);
             }

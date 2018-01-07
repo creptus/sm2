@@ -3,3 +3,4 @@
  */
 
 export {Aquarium} from './aquarium';
+export {Bedroom} from './bedroom';

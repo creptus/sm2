@@ -14,7 +14,7 @@ import {AppComponent} from './app.component';
 import {NotFoundComponent} from './not-found.component';
 import {AquariumComponent} from './aquarium/aquarium.component';
 
-import {AquariumService} from './services/services';
+import {AquariumService, BedroomService} from './services/services';
 import {BedroomComponent} from './bedroom/bedroom.component';
 import {CorridorComponent} from './corridor/corridor.component';
 import {LampDirective} from './directive/lamp.directive';
@@ -55,7 +55,7 @@ const appRoutes: Routes = [
       }
     )
   ],
-  providers: [AquariumService],
+  providers: [AquariumService, BedroomService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

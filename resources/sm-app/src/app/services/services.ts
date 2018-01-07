@@ -3,3 +3,4 @@
  */
 
 export {AquariumService} from './aquarium.service';
+export {BedroomService} from './bedroom.service';
