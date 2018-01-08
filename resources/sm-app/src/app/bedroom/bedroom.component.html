@@ -22,10 +22,15 @@
         <label>Датчик света:</label>
         <i appLampDirective [state]="bedroom.lightSensor" style="display: inline-block;"></i>
       </div>
-      <div>Датчик звука: {{bedroom.micSensor}}</div>
+      <div>Датчик звука: {{bedroom.micSensor}} | 3сек: {{bedroom.mic3secSensor}}</div>
       <div>
         Датчик вибрации:
         <i appFlashDirective [state]="bedroom.vibroSensor" style="display: inline-block;"></i>
+      </div>
+
+      <div>
+        Датчик холла:
+        <i appFlashDirective [state]="bedroom.hollSensor" style="display: inline-block;"></i>
       </div>
 
       <div>Температура: {{bedroom.temperatureSensor}} C</div>

@@ -34,7 +34,7 @@ module.exports = class Aquarium {
                 case 'light':
                     this.lightSensor = s.value === 'on';
                     break;
-                case 'vibro1':
+                case 'vibro':
                     this.vibroSensor = s.value === 'on';
                     break;
                 case 'mic':

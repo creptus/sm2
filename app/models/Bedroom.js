@@ -2,9 +2,9 @@
  * Created by creptus on 07.01.2018.
  */
 
-module.exports=class Bedroom {
+module.exports = class Bedroom {
     /**
-     * 
+     *
      */
     constructor() {
         this.lightSensor = false;
@@ -30,11 +30,17 @@ module.exports=class Bedroom {
                 case 'light':
                     this.lightSensor = s.value === 'on';
                     break;
-                case 'vibro1':
+                case 'vibro':
                     this.vibroSensor = s.value === 'on';
+                    break;
+                case 'holl':
+                    this.hollSensor = s.value === 'on';
                     break;
                 case 'mic':
                     this.micSensor = s.value;
+                    break;
+                case 'mic3sec':
+                    this.mic3secSensor = s.value;
                     break;
                 case 'humidity':
                     this.humiditySensor = s.value;
@@ -46,7 +52,7 @@ module.exports=class Bedroom {
                     console.log('Unknown', s);
             }
         }
-        
+
         for (let d of data.devices) {
             switch (d.name) {
                 default:

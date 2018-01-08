@@ -5,11 +5,11 @@
 const dgram = require('dgram');
 const util = require('util');
 /**
- * 
+ *
  */
 class Message {
     /**
-     * 
+     *
      * @param {string} message
      * @param {number} port
      * @param {string} ip
@@ -22,12 +22,12 @@ class Message {
 }
 
 /**
- * 
+ *
  * @type {Sender}
  */
 module.exports = class Sender {
     /**
-     * 
+     *
      */
     constructor() {
         this._messages = [];
@@ -55,9 +55,12 @@ module.exports = class Sender {
             m.message += `\r\n`;
         }
         const client = dgram.createSocket('udp4');
-        client.send(Buffer.from(m.message), m.port, m.ip, (err) => {
-            util.log(m.message, err);
-            client.close();
+        client.bind(function() {
+            client.setBroadcast(true);
+            client.send(Buffer.from(m.message), m.port, m.ip, (err) => {
+                util.log(m.message, err);
+                client.close();
+            });
         });
     }
 };

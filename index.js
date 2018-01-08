@@ -109,6 +109,11 @@ setInterval(() => {
     sender.sendMessage();
 }, 700);
 
+setInterval(() => {
+    let message = `status\r\n`;
+    sender.addMessage(message, config.broadcast.port, config.broadcast.ip);
+}, 1000*60);
+
 server.on('error', (err) => {
     console.log(`server error:\n${err.stack}`);
     server.close();
