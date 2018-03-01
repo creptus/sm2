@@ -13,7 +13,7 @@ export class DateEnRuPipe implements PipeTransform {
    */
   transform(value): string {
     if (value && typeof value === 'string') {
-      return value.substr(0, 10).split('-').reverse().join('.') + value.substr(10, 6);
+      return value.substr(0, 10).split('-').reverse().join('.') + value.substr(10, 9);
     }
     return value;
   }
