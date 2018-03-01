@@ -1,18 +1,21 @@
 /**
  * Created by creptus on 07.01.2018.
  */
-
-module.exports = class Bedroom {
+const Room = require('./Room');
+module.exports = class Bedroom extends Room {
     /**
      *
      */
     constructor() {
+        super();
         this.lightSensor = false;
         this.vibroSensor = false;
         this.micSensor = 0;
 
         this.temperatureSensor = 0;
         this.humiditySensor = 0;
+
+        // super.date = super.getNow();
     }
 
     /**
@@ -59,6 +62,11 @@ module.exports = class Bedroom {
                     console.log('Unknown', d);
             }
         }
+
+        super.date = super.getNow();
+
         // console.log(this);
     }
+
+
 };

@@ -202,6 +202,8 @@ module.exports = class StatusData {
         }
     }
 
+
+
     /**
      *
      * @return {{controller: ({name: string, info: string, ip: string, port: string}|*), sensors: Array, 

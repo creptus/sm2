@@ -1,11 +1,14 @@
 /**
  * Created by akorolev on 07.12.2017.
  */
-module.exports = class Aquarium {
+const Room = require('./Room');
+
+module.exports = class Aquarium extends Room {
     /**
      *
      */
     constructor() {
+        super();
         this.socket0 = false;
         this.socket1 = false;
         this.socket2 = false;
@@ -17,6 +20,8 @@ module.exports = class Aquarium {
 
         this.temperatureSensor = 0;
         this.humiditySensor = 0;
+
+        super.date = super.getNow();
     }
 
     /**
@@ -68,6 +73,11 @@ module.exports = class Aquarium {
                     console.log('Unknown', d);
             }
         }
+
+
+        // super.date = super.getNow();
         // console.log(this);
     }
+
+
 };

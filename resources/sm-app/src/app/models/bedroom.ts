@@ -11,6 +11,7 @@ export class Bedroom {
 
   public hollSensor?: boolean;
 
+  public date?: string;
 
   constructor() {
 
@@ -22,5 +23,7 @@ export class Bedroom {
     this.mic3secSensor = 0;
     this.temperatureSensor = 0;
     this.humiditySensor = 0;
+
+    this.date = '';
   }
 }

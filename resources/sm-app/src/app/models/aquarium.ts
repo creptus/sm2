@@ -11,6 +11,8 @@ export class Aquarium {
   public temperatureSensor: number;
   public humiditySensor: number;
 
+  public date?: string;
+
   constructor() {
     this.socket0 = false;
     this.socket1 = false;
@@ -22,5 +24,7 @@ export class Aquarium {
     this.micSensor = 0;
     this.temperatureSensor = 0;
     this.humiditySensor = 0;
+
+    this.date = '';
   }
 }

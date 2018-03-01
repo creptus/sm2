@@ -45,6 +45,14 @@ module.exports = class Sender {
 
     /**
      *
+     * @return {number}
+     */
+    countMessages(){
+        return this._messages.length;
+    }
+
+    /**
+     *
      */
     sendMessage() {
         if (this._messages.length == 0) {
